@@ -1,20 +1,46 @@
-# Example app with styled-components
+# Alura Viagens
 
-This example features how you use a different styling solution than [styled-jsx](https://github.com/vercel/styled-jsx) that also supports universal styles. That means we can serve the required styles for the first render within the HTML and then load the rest in the client. In this case we are using [styled-components](https://github.com/styled-components/styled-components).
+**Desafio Extra**
 
-For this purpose we are extending the `<Document />` and injecting the server side rendered styles into the `<head>`, and also adding the `babel-plugin-styled-components` (which is required for server side rendering). Additionally we set up a global [theme](https://www.styled-components.com/docs/advanced#theming) for styled-components using NextJS custom [`<App>`](https://nextjs.org/docs/advanced-features/custom-app) component.
+Esse desafio extra além de ser uma opção para mergulhar fundo em validações de formulários e controle de estado, é também uma oportunidade para treinar CSS, afinal nem só de JavaScript vive quem trabalha com front-end.
 
-## Preview
+## Demo
 
-Preview the example live on [StackBlitz](http://stackblitz.com/):
+https://alura-viagens-omega.vercel.app/
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-styled-components)
-
-## Deploy your own
+## Deployment
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-styled-components&project-name=with-styled-components&repository-name=with-styled-components)
+
+Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/mayrazan/Mayra_Zanchett_Manchein_BootcampFrontendAlura_Extra.git
+```
+
+Go to the project directory
+
+```bash
+  cd my-project
+```
+
+Install dependencies
+
+```bash
+  yarn install
+```
+
+Start the server
+
+```bash
+  yarn start
+```
 
 ## How to use
 
@@ -26,59 +52,120 @@ npx create-next-app --example with-styled-components with-styled-components-app
 yarn create next-app --example with-styled-components with-styled-components-app
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+## Tech Stack
 
-### Try it on CodeSandbox
+- React
+- NextJS
+- Styled-Components
+- Prop-Types
 
-[Open this example on CodeSandbox](https://codesandbox.io/s/github/vercel/next.js/tree/canary/examples/with-styled-components)
+## Assignments
 
-### Notes
+- [ ] Opção de pagamento (PayPal, cartão de credito ou transferência):
+      Mostre com destaque na cor da sua preferência a opção que for selecionada.
+- [ ] No campo Nome:
+      O input não pode ser vazio e não pode ter número.
+- [ ] No campo Sobrenome:
+      O input não pode ser vazio e não pode ter número.
+- [ ] No campo País de Residência:
+      O input não pode ser vazio e não pode ter número.
+- [ ] No campo Local de Origem:
+      O input não pode ser vazio e não pode ter número.
+- [ ] No campo Local de Chegada:
+      O input não pode ser vazio e não pode ter número.
+- [ ] Melhorando o UX
+      Essa tarefa não é obrigatória, mas fica o desafio modo hard para se fazer. Um autocomplete para exibir os nomes dos países, melhorando ainda mais a experiência do usuário.
+- [ ] No campo CPF:
+      Verifique se o número do CPF é válido.
+      Crie uma máscara de exibição, para indicar como os dados devem ser exibidos, assim como é mostrado no layout.
+- [ ] No campo Telefone:
+      Verifique se o número de telefone é válido.
+      Crie uma máscara de exibição, para indicar como os dados devem ser exibidos, assim como é mostrado no layout.
+- [ ] No campo Email:
+      Verifique se o formato do email é válido.
+- [ ] No campo de Data de Nascimento:
+      Verifique se a pessoa tem mais de dezoito anos, caso contrário o botão de compra não deve aparecer.
+- [ ] Nos campos Data da saída e Data de retorno:
+      A data de saída não pode ser a anterior a data de retorno.
+- [ ] Exiba o botão de compra somente, se todos os dados do formulário estiverem preenchidos.
+- [ ] Exibir alertas caso alguma informação seja preenchida errada ou esteja faltando.
 
-When wrapping a [Link](https://nextjs.org/docs/api-reference/next/link) from `next/link` within a styled-component, the [as](https://styled-components.com/docs/api#as-polymorphic-prop) prop provided by `styled` will collide with the Link's `as` prop and cause styled-components to throw an `Invalid tag` error. To avoid this, you can either use the recommended [forwardedAs](https://styled-components.com/docs/api#forwardedas-prop) prop from styled-components or use a different named prop to pass to a `styled` Link.
+## CI / CD
 
-<details>
-<summary>Click to expand workaround example</summary>
-<br />
+Instruções de como criar um sistema de integração e entrega contínua o CI/CD.
 
-**components/StyledLink.js**
+Instalar as seguintes dependências:
 
-```javascript
-import Link from 'next/link'
-import styled from 'styled-components'
-
-const StyledLink = ({ as, children, className, href }) => (
-  <Link href={href} as={as} passHref>
-    <a className={className}>{children}</a>
-  </Link>
-)
-
-export default styled(StyledLink)`
-  color: #0075e0;
-  text-decoration: none;
-  transition: all 0.2s ease-in-out;
-
-  &:hover {
-    color: #40a9ff;
-  }
-
-  &:focus {
-    color: #40a9ff;
-    outline: none;
-    border: 0;
-  }
-`
+```bash
+yarn add husky --dev
+yarn add eslint --dev
+yarn add lint-staged --dev
+npm install -g commitizen
+commitizen init cz-conventional-changelog --yarn --dev --exact
+yarn add @commitlint/config-conventional @commitlint/cli --dev
 ```
 
-**pages/index.js**
+Adicionar as seguintes configurações no package.json:
 
-```javascript
-import StyledLink from '../components/StyledLink'
+```json
+"scripts": {
+    "lint": "eslint --ignore-path .gitignore .",
+    "lint:fix": "yarn lint --fix",
+    "prepare": "husky install",
+    "commit": "cz",
+    "lint-staged": "lint-staged"
+}
 
-export default () => (
-  <StyledLink href="/post/[pid]" forwardedAs="/post/abc">
-    First post
-  </StyledLink>
-)
+"lint-staged": {
+    "*.js": [
+      "yarn lint:fix"
+    ]
+  },
+
+"husky": {
+    "hooks": {
+      "pre-push": "yarn lint",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+},
 ```
 
-</details>
+## Terminal commands
+
+**Run**
+
+```bash
+yarn run eslint --init
+yarn prepare
+```
+
+**Add a hook:**
+
+```bash
+npx husky add .husky/pre-commit "yarn lint-staged"
+```
+
+**Configure commitlint to use conventional config:**
+
+```bash
+echo "module.exports = {extends: ['@commitlint/config-conventional']}" > commitlint.config.js
+```
+
+Para utilizar os comandos configurados, sempre que for commitar algum arquivo utilize `yarn commit` ao invés de `git commit -m "mensagem"`.
+
+## Color Reference
+
+| Color | Hex                                                              |
+| ----- | ---------------------------------------------------------------- |
+| Ming  | ![#246A73](https://via.placeholder.com/10/246A73?text=+) #246A73 |
+| Black | ![#000000](https://via.placeholder.com/10/000000?text=+) #000000 |
+| White | ![#ffffff](https://via.placeholder.com/10/ffffff?text=+) #ffffff |
+
+## Badges
+
+[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
+[![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
