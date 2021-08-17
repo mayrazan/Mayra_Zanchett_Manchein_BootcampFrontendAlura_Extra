@@ -1,6 +1,7 @@
 import React from 'react';
 import Box from '../src/components/layout/Box';
 import Title from '../src/components/commons/Title';
+import Button from '../src/components/commons/Button';
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       boxShadow="0px 0px 20px 5px rgba(0, 0, 0, 0.3)"
     >
       <Title text="Alura Viagens" color="title" />
+      <Button>Comprar</Button>
     </Box>
   );
 }
