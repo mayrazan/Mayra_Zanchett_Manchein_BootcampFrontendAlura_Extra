@@ -13,7 +13,6 @@ const Button = styled.button`
   cursor: pointer;
   padding: 14px 36px;
   opacity: 1;
-  border-radius: 8px;
   ${TextStyleVariants.label}
   ${ButtonDefault}
   ${breakpointsMedia({
