@@ -2,12 +2,12 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import breakpointsMedia from '../../../theme/utils/breakpointsMedia';
-import LabelField from '../Label';
-import propToStyle from '../../../theme/utils/propToStyle';
+import TextField from '../TextField';
 
-const InputWrapper = styled.div`
+const SelectWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  min-width: 250px;
   ${breakpointsMedia({
     xs: css`
       margin-bottom: 16px;
@@ -18,12 +18,11 @@ const InputWrapper = styled.div`
   })};
 `;
 
-const Input = styled.input`
+const Select = styled.datalist`
   border: 1px solid ${({ theme }) => theme.colors.background.main.color};
   padding: 12px 16px;
   outline: 0;
   border-radius: ${({ theme }) => theme.borderRadius};
-  ${propToStyle('width')}
   ${breakpointsMedia({
     xs: css`
       width: 100%;
@@ -31,47 +30,64 @@ const Input = styled.input`
     `,
     md: css`
       width: fit-content;
-      max-width: none;
     `,
   })};
 `;
 
-export default function TextField({
+const Input = styled(TextField)`
+  width: auto;
+`;
+
+export default function SelectField({
+  id,
   name,
   onChange,
   value,
-  id,
-  as,
   labelName,
+  options,
+  list,
   ...props
 }) {
   return (
-    <InputWrapper>
-      <LabelField htmlFor={id} variant="label">
-        {labelName}
-      </LabelField>
+    <SelectWrapper>
       <Input
+        id={id}
+        name={name}
+        labelName={labelName}
+        value={value}
+        onChange={onChange}
+        list={list}
+        type="search"
+      />
+      <Select
+        id={list}
         name={name}
         onChange={onChange}
         value={value}
-        id={id}
         required
-        as={as}
         {...props}
-      />
-    </InputWrapper>
+      >
+        {options.map((option) => (
+          <option value={option.text} id={option.value}>
+            {option.text}
+          </option>
+        ))}
+      </Select>
+    </SelectWrapper>
   );
 }
 
-TextField.propTypes = {
+SelectField.propTypes = {
+  id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
-  as: PropTypes.string,
   labelName: PropTypes.string.isRequired,
-};
-
-TextField.defaultProps = {
-  as: 'input',
+  list: PropTypes.string.isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
 };

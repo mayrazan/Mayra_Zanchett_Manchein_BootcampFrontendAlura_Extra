@@ -61,7 +61,7 @@ yarn create next-app --example with-styled-components with-styled-components-app
 
 ## Assignments
 
-- [ ] Opção de pagamento (PayPal, cartão de credito ou transferência):
+- [x] Opção de pagamento (PayPal, cartão de credito ou transferência):
       Mostre com destaque na cor da sua preferência a opção que for selecionada.
 - [ ] No campo Nome:
       O input não pode ser vazio e não pode ter número.
@@ -73,7 +73,7 @@ yarn create next-app --example with-styled-components with-styled-components-app
       O input não pode ser vazio e não pode ter número.
 - [ ] No campo Local de Chegada:
       O input não pode ser vazio e não pode ter número.
-- [ ] Melhorando o UX
+- [x] Melhorando o UX
       Essa tarefa não é obrigatória, mas fica o desafio modo hard para se fazer. Um autocomplete para exibir os nomes dos países, melhorando ainda mais a experiência do usuário.
 - [ ] No campo CPF:
       Verifique se o número do CPF é válido.
