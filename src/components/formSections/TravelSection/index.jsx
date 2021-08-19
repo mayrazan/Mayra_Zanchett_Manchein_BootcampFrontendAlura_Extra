@@ -1,33 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import TextField from '../../forms/TextField';
 import Text from '../../foundation/Text';
 import Box from '../../layout/Box';
 import SelectField from '../../forms/SelectField';
-import countries from '../../../utils/countries';
-import autocomplete from '../../../utils/autocomplete';
+import { useContextForm } from '../../context/Provider';
 
 export default function TravelSection() {
-  const [formInfo, setFormInfo] = useState({
-    name: '',
-    lastName: '',
-    birthDate: '',
-    cpf: '',
-    email: '',
-    tel: '',
-  });
-  const [select, setSelect] = useState('');
-
-  const handleSelect = (event) => {
-    const { value } = event.target;
-    setSelect(value);
-  };
-
-  const searchCountries = select === '' ? countries : autocomplete(select);
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormInfo({ ...formInfo, [name]: value });
-  };
+  const {
+    formInfo, handleChange, searchCountries, select, handleSelect,
+  } = useContextForm();
 
   return (
     <Box

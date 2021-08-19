@@ -1,15 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useContextForm } from '../../context/Provider';
 import RadioField from '../../forms/RadioField';
 import Text from '../../foundation/Text';
 import Box from '../../layout/Box';
 
 export default function PaymentSection() {
-  const [radio, setRadio] = useState('');
-
-  const handleChange = (event) => {
-    const { value } = event.target;
-    setRadio(value);
-  };
+  const { handleChangeRadio, radio } = useContextForm();
 
   return (
     <Box gap={{ xs: '18px', md: '11px' }} display="flex" flexDirection="column">
@@ -23,7 +19,7 @@ export default function PaymentSection() {
           id="money"
           value="money"
           className="money"
-          onChange={handleChange}
+          onChange={handleChangeRadio}
           checked={radio === 'money'}
           borderRadius="10px 0px 0px 10px"
         />
@@ -33,7 +29,7 @@ export default function PaymentSection() {
           id="card"
           value="card"
           className="card"
-          onChange={handleChange}
+          onChange={handleChangeRadio}
           checked={radio === 'card'}
         />
         <RadioField
@@ -42,7 +38,7 @@ export default function PaymentSection() {
           id="paypal"
           value="paypal"
           className="paypal"
-          onChange={handleChange}
+          onChange={handleChangeRadio}
           checked={radio === 'paypal'}
           borderRadius="0px 10px 10px 0px"
         />

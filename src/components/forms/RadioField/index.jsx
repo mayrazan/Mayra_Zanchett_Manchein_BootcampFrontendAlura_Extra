@@ -89,7 +89,6 @@ export default function RadioField({
           name={name}
           onChange={onChange}
           value={value}
-          required
           type="radio"
           {...props}
         />

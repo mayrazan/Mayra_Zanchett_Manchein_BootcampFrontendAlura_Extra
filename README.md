@@ -81,13 +81,13 @@ yarn create next-app --example with-styled-components with-styled-components-app
 - [ ] No campo Telefone:
       Verifique se o número de telefone é válido.
       Crie uma máscara de exibição, para indicar como os dados devem ser exibidos, assim como é mostrado no layout.
-- [ ] No campo Email:
+- [x] No campo Email:
       Verifique se o formato do email é válido.
 - [ ] No campo de Data de Nascimento:
       Verifique se a pessoa tem mais de dezoito anos, caso contrário o botão de compra não deve aparecer.
 - [ ] Nos campos Data da saída e Data de retorno:
       A data de saída não pode ser a anterior a data de retorno.
-- [ ] Exiba o botão de compra somente, se todos os dados do formulário estiverem preenchidos.
+- [x] Exiba o botão de compra somente, se todos os dados do formulário estiverem preenchidos.
 - [ ] Exibir alertas caso alguma informação seja preenchida errada ou esteja faltando.
 
 ## CI / CD

@@ -26,8 +26,7 @@ const Button = styled.button`
   })};
   transition: opacity ${({ theme }) => theme.transition};
   border-radius: ${({ theme }) => theme.borderRadius};
-  &:hover,
-  &:focus {
+  &:hover {
     opacity: 0.5;
   }
   &:disabled {

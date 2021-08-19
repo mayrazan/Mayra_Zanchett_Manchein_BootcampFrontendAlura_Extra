@@ -1,20 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useContextForm } from '../../context/Provider';
 import TextField from '../../forms/TextField';
 import Text from '../../foundation/Text';
 import Box from '../../layout/Box';
 
 export default function DateSection() {
-  const [formInfo, setFormInfo] = useState({
-    departureDate: '',
-    returnDate: '',
-    originPlace: '',
-    arrivalLocation: '',
-  });
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormInfo({ ...formInfo, [name]: value });
-  };
+  const { handleChange, formInfo } = useContextForm();
 
   return (
     <Box
