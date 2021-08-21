@@ -4,7 +4,7 @@ import Text from '../../foundation/Text';
 import Box from '../../layout/Box';
 import SelectField from '../../forms/SelectField';
 import { useContextForm } from '../../../context/Provider';
-import { check } from '../../../utils/formValidation';
+import ErrorMessage from '../../commons/ErrorMessage';
 
 export default function TravelSection() {
   const {
@@ -14,11 +14,8 @@ export default function TravelSection() {
     select,
     handleSelect,
     is18,
+    formValidation,
   } = useContextForm();
-
-  const formValidation = (event) => {
-    check(event.target, event.target.name);
-  };
 
   return (
     <Box
@@ -86,16 +83,7 @@ export default function TravelSection() {
         />
       </Box>
       {is18().invalid && (
-        <div
-          style={{
-            display: 'flex',
-            paddingBottom: '20px',
-            color: 'red',
-            justifyContent: 'flex-end',
-          }}
-        >
-          <span>{is18().message}</span>
-        </div>
+        <ErrorMessage justifyContent="flex-end">{is18().message}</ErrorMessage>
       )}
       <Box
         display="flex"

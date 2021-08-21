@@ -9,9 +9,9 @@ const RadioWrapper = styled.div`
   display: flex;
   flex-direction: column;
   border: 1px solid ${({ theme }) => theme.colors.background.main.color};
-  padding: 2px 16px 12px;
   outline: 0;
   ${propToStyle('borderRadius')}
+  ${propToStyle('padding')}
   ${breakpointsMedia({
     xs: css`
       margin-bottom: 16px;

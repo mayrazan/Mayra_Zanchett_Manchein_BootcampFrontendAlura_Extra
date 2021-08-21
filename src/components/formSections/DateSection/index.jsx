@@ -1,16 +1,14 @@
 import React from 'react';
 import { useContextForm } from '../../../context/Provider';
-import { check } from '../../../utils/formValidation';
+import ErrorMessage from '../../commons/ErrorMessage';
 import TextField from '../../forms/TextField';
 import Text from '../../foundation/Text';
 import Box from '../../layout/Box';
 
 export default function DateSection() {
-  const { handleChange, formInfo, verifyDate } = useContextForm();
-
-  const formValidation = (event) => {
-    check(event.target, event.target.name);
-  };
+  const {
+    handleChange, formInfo, verifyDate, formValidation, locations,
+  } = useContextForm();
 
   return (
     <Box
@@ -50,37 +48,44 @@ export default function DateSection() {
           min={new Date().toISOString().split('T')[0]}
         />
       </Box>
-      {verifyDate().invalid
-        && (
-        <div style={{ display: 'flex', paddingBottom: '20px', color: 'red' }}>
-          <span>{verifyDate().message}</span>
-        </div>
-        )}
+      {verifyDate().invalid && (
+        <ErrorMessage>{verifyDate().message}</ErrorMessage>
+      )}
       <Box
         display="flex"
         flexDirection={{ xs: 'column', md: 'row' }}
         gap={{ xs: '0', md: '20px' }}
       >
-        <TextField
-          id="originPlace"
-          name="originPlace"
-          labelName="Local de origem"
-          value={formInfo.originPlace}
-          onChange={handleChange}
-          type="text"
-          pattern="[a-zA-Z ]*"
-          onBlur={formValidation}
-        />
-        <TextField
-          id="arrivalLocation"
-          name="arrivalLocation"
-          labelName="Local de chegada"
-          value={formInfo.arrivalLocation}
-          onChange={handleChange}
-          type="text"
-          pattern="[a-zA-Z ]*"
-          onBlur={formValidation}
-        />
+        <div>
+          <TextField
+            id="originPlace"
+            name="originPlace"
+            labelName="Local de origem"
+            value={formInfo.originPlace}
+            onChange={handleChange}
+            type="text"
+            pattern="[a-zA-Z ]*"
+            onBlur={formValidation}
+          />
+          {locations.originPlace && (
+            <ErrorMessage>{locations.originPlace}</ErrorMessage>
+          )}
+        </div>
+        <div>
+          <TextField
+            id="arrivalLocation"
+            name="arrivalLocation"
+            labelName="Local de chegada"
+            value={formInfo.arrivalLocation}
+            onChange={handleChange}
+            type="text"
+            pattern="[a-zA-Z ]*"
+            onBlur={formValidation}
+          />
+          {locations.arrivalLocation && (
+            <ErrorMessage>{locations.arrivalLocation}</ErrorMessage>
+          )}
+        </div>
       </Box>
     </Box>
   );

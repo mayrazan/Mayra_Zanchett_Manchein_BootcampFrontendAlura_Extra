@@ -22,6 +22,7 @@ export default function PaymentSection() {
           onChange={handleChangeRadio}
           checked={radio === 'money'}
           borderRadius="10px 0px 0px 10px"
+          padding="2px 5px 10px"
         />
         <RadioField
           name="card"
@@ -31,6 +32,7 @@ export default function PaymentSection() {
           className="card"
           onChange={handleChangeRadio}
           checked={radio === 'card'}
+          padding="2px 16px 12px"
         />
         <RadioField
           name="paypal"
@@ -41,6 +43,7 @@ export default function PaymentSection() {
           onChange={handleChangeRadio}
           checked={radio === 'paypal'}
           borderRadius="0px 10px 10px 0px"
+          padding="2px 16px 12px"
         />
       </div>
     </Box>

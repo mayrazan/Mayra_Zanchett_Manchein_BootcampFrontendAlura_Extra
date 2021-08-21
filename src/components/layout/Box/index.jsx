@@ -9,6 +9,7 @@ const Box = styled.div`
   ${propToStyle('backgroundColor')}
   ${propToStyle('backgroundSize')}
   ${propToStyle('boxShadow')}
+  ${propToStyle('color')}
   ${propToStyle('display')}
   ${propToStyle('flexDirection')}
   ${propToStyle('flex')}
@@ -22,6 +23,7 @@ const Box = styled.div`
   ${propToStyle('minWidth')}
   ${propToStyle('minHeight')}
   ${propToStyle('padding')}
+  ${propToStyle('paddingBottom')}
   ${propToStyle('transform')}
   ${propToStyle('width')}
 `;

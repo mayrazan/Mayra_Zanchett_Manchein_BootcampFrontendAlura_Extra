@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import autocomplete from '../utils/autocomplete';
 import countries from '../utils/countries';
+import { check } from '../utils/formValidation';
 
 const useForm = () => {
   const formStates = {
@@ -15,7 +16,11 @@ const useForm = () => {
   const [submissionStatus, setSubmissionStatus] = useState(formStates.DEFAULT);
   const [radio, setRadio] = useState('money');
   const [select, setSelect] = useState('');
-  const [formInfo, setFormInfo] = useState({
+  const [locations, setLocations] = useState({
+    originPlace: '',
+    arrivalLocation: '',
+  });
+  const initialFormValues = {
     departureDate: '',
     returnDate: '',
     originPlace: '',
@@ -28,7 +33,8 @@ const useForm = () => {
     cpf: '',
     email: '',
     tel: '',
-  });
+  };
+  const [formInfo, setFormInfo] = useState(initialFormValues);
 
   const phoneMask = (value) => {
     value = value.replace(/\D/g, '');
@@ -43,6 +49,14 @@ const useForm = () => {
     value = value.replace(/(\d{3})(\d)/, '$1.$2');
     value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
     return value;
+  };
+
+  const showErrorMessage = (name, valid) => {
+    if (!valid) {
+      setLocations({ ...locations, [name]: 'Não pode ter números' });
+    } else {
+      setLocations({ ...locations, [name]: '' });
+    }
   };
 
   const handleSelect = (event) => {
@@ -70,6 +84,9 @@ const useForm = () => {
       const formattedCPF = cpfMask(value);
       setFormInfo({ ...formInfo, cpf: formattedCPF });
     }
+    if (name === 'originPlace' || name === 'arrivalLocation') {
+      showErrorMessage(name, event.target.checkValidity());
+    }
   };
 
   const verifyDate = () => {
@@ -77,7 +94,10 @@ const useForm = () => {
     const date2 = new Date(formInfo.returnDate);
 
     if (date1.getTime() > date2.getTime()) {
-      return { invalid: true, message: 'A data de saída não pode ser a anterior a data de retorno' };
+      return {
+        invalid: true,
+        message: 'A data de saída não pode ser a anterior a data de retorno',
+      };
     }
     return { invalid: false, message: '' };
   };
@@ -102,6 +122,10 @@ const useForm = () => {
     (item) => formInfo[item].length === 0,
   );
   const isFormInvalid = isEmpty.filter((i) => i).length > 0;
+
+  const formValidation = (event) => {
+    check(event.target, event.target.name);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -128,9 +152,11 @@ const useForm = () => {
       console.log('erro');
     } else {
       setSubmissionStatus(formStates.DONE);
+      setSelect('');
+      setTimeout(() => setFormInfo(initialFormValues), 1200);
       console.log(userDTO);
     }
-    setTimeout(() => setSubmissionStatus(formStates.DEFAULT), 5000);
+    setTimeout(() => setSubmissionStatus(formStates.DEFAULT), 3000);
   };
 
   return {
@@ -148,6 +174,8 @@ const useForm = () => {
     radio,
     is18,
     verifyDate,
+    formValidation,
+    locations,
   };
 };
 

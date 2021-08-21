@@ -20,6 +20,8 @@ function FormProvider({ children }) {
     radio,
     is18,
     verifyDate,
+    formValidation,
+    locations,
   } = useForm();
 
   return (
@@ -39,6 +41,8 @@ function FormProvider({ children }) {
         radio,
         is18,
         verifyDate,
+        formValidation,
+        locations,
       }}
     >
       {children}
