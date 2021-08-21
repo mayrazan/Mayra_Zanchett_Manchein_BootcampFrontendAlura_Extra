@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-console */
 import { useState } from 'react';
 import autocomplete from '../utils/autocomplete';
@@ -29,6 +30,21 @@ const useForm = () => {
     tel: '',
   });
 
+  const phoneMask = (value) => {
+    value = value.replace(/\D/g, '');
+    value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
+    value = value.replace(/(\d)(\d{4})$/, '$1-$2');
+    return value;
+  };
+
+  const cpfMask = (value) => {
+    value = value.replace(/\D/g, '');
+    value = value.replace(/(\d{3})(\d)/, '$1.$2');
+    value = value.replace(/(\d{3})(\d)/, '$1.$2');
+    value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+    return value;
+  };
+
   const handleSelect = (event) => {
     const { value } = event.target;
     setSelect(value);
@@ -46,6 +62,14 @@ const useForm = () => {
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormInfo({ ...formInfo, [name]: value });
+    if (name === 'tel') {
+      const newTel = phoneMask(value);
+      setFormInfo({ ...formInfo, tel: newTel });
+    }
+    if (name === 'cpf') {
+      const formattedCPF = cpfMask(value);
+      setFormInfo({ ...formInfo, cpf: formattedCPF });
+    }
   };
 
   const verifyDate = () => {
@@ -106,6 +130,7 @@ const useForm = () => {
       setSubmissionStatus(formStates.DONE);
       console.log(userDTO);
     }
+    setTimeout(() => setSubmissionStatus(formStates.DEFAULT), 5000);
   };
 
   return {

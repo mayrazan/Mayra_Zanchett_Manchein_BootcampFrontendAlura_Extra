@@ -15,7 +15,7 @@ export const errorMessages = {
     valueMissing: 'O CPF é necessário',
     tooShort: 'CPF faltando numeros',
     customError: 'Este não é um CPF válido',
-    patternMismatch: 'Somente números',
+    patternMismatch: 'Este não é um CPF válido',
     tooLong: 'CPF muito longo',
   },
   returnDate: {
@@ -29,11 +29,13 @@ export const errorMessages = {
     valueMissing: 'O Local de origem é necessário',
     typeMismatch: 'Não pode ter número',
     patternMismatch: 'Não pode ter número',
+    customError: 'Não pode ter número',
   },
   arrivalLocation: {
     valueMissing: 'O Local de chegada é necessário',
     typeMismatch: 'Não pode ter número',
     patternMismatch: 'Não pode ter número',
+    customError: 'Não pode ter número',
   },
   countriesResidence: {
     valueMissing: 'O país é necessário',
@@ -58,9 +60,10 @@ export const errorMessages = {
   },
   tel: {
     valueMissing: 'O telefone é necessário',
-    customError: 'Apenas números são aceitos',
+    customError: 'Este não é um telefone válido',
     typeMismatch: 'Este não é um telefone válido',
     tooShort: 'Telefone faltando numeros',
+    patternMismatch: 'Este não é um telefone válido',
   },
 };
 
@@ -88,6 +91,6 @@ export const check = (input, name) => {
     }
     input.setCustomValidity(msg);
   });
-  isValid = msg.length === 0;
+  isValid = msg !== undefined && msg.length === 0;
   return { msg, isValid, name };
 };

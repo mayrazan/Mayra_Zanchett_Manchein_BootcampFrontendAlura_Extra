@@ -29,7 +29,7 @@ const countries = [
   { text: 'Bosnia and Herzegovina', value: 'BA' },
   { text: 'Botswana', value: 'BW' },
   { text: 'Bouvet Island', value: 'BV' },
-  { text: 'Brazil', value: 'BR' },
+  { text: 'Brasil', value: 'BR' },
   { text: 'British Indian Ocean Territory', value: 'IO' },
   { text: 'Brunei Darussalam', value: 'BN' },
   { text: 'Bulgaria', value: 'BG' },

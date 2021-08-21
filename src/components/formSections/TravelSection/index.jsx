@@ -110,10 +110,10 @@ export default function TravelSection() {
           onChange={handleChange}
           type="text"
           width="100% !important"
-          pattern="[0-9]{11}"
+          pattern="\d{3}\.?\d{3}\.?\d{3}-?\d{2}"
           maxLength="14"
           onBlur={formValidation}
-          placeholder="000.000.000-00"
+          placeholder="Somente números"
         />
         <TextField
           id="email"
@@ -135,7 +135,9 @@ export default function TravelSection() {
           width="100% !important"
           minlength="11"
           onBlur={formValidation}
-          placeholder="(__) ____ - _____"
+          placeholder="Somente números"
+          maxlength="15"
+          pattern="\(\d{2}\)\s*\d{5}-\d{4}"
         />
       </Box>
     </Box>
