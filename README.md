@@ -63,32 +63,32 @@ yarn create next-app --example with-styled-components with-styled-components-app
 
 - [x] Opção de pagamento (PayPal, cartão de credito ou transferência):
       Mostre com destaque na cor da sua preferência a opção que for selecionada.
-- [ ] No campo Nome:
+- [x] No campo Nome:
       O input não pode ser vazio e não pode ter número.
-- [ ] No campo Sobrenome:
+- [x] No campo Sobrenome:
       O input não pode ser vazio e não pode ter número.
-- [ ] No campo País de Residência:
+- [x] No campo País de Residência:
       O input não pode ser vazio e não pode ter número.
-- [ ] No campo Local de Origem:
+- [x] No campo Local de Origem:
       O input não pode ser vazio e não pode ter número.
-- [ ] No campo Local de Chegada:
+- [x] No campo Local de Chegada:
       O input não pode ser vazio e não pode ter número.
 - [x] Melhorando o UX
       Essa tarefa não é obrigatória, mas fica o desafio modo hard para se fazer. Um autocomplete para exibir os nomes dos países, melhorando ainda mais a experiência do usuário.
-- [ ] No campo CPF:
+- [x] No campo CPF:
       Verifique se o número do CPF é válido.
       Crie uma máscara de exibição, para indicar como os dados devem ser exibidos, assim como é mostrado no layout.
-- [ ] No campo Telefone:
+- [x] No campo Telefone:
       Verifique se o número de telefone é válido.
       Crie uma máscara de exibição, para indicar como os dados devem ser exibidos, assim como é mostrado no layout.
 - [x] No campo Email:
       Verifique se o formato do email é válido.
-- [ ] No campo de Data de Nascimento:
+- [x] No campo de Data de Nascimento:
       Verifique se a pessoa tem mais de dezoito anos, caso contrário o botão de compra não deve aparecer.
-- [ ] Nos campos Data da saída e Data de retorno:
+- [x] Nos campos Data da saída e Data de retorno:
       A data de saída não pode ser a anterior a data de retorno.
 - [x] Exiba o botão de compra somente, se todos os dados do formulário estiverem preenchidos.
-- [ ] Exibir alertas caso alguma informação seja preenchida errada ou esteja faltando.
+- [x] Exibir alertas caso alguma informação seja preenchida errada ou esteja faltando.
 
 ## CI / CD
 

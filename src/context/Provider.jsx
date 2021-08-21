@@ -18,6 +18,8 @@ function FormProvider({ children }) {
     searchCountries,
     select,
     radio,
+    is18,
+    verifyDate,
   } = useForm();
 
   return (
@@ -35,6 +37,8 @@ function FormProvider({ children }) {
         searchCountries,
         select,
         radio,
+        is18,
+        verifyDate,
       }}
     >
       {children}

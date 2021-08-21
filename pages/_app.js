@@ -4,7 +4,7 @@ import Head from 'next/head';
 import PropTypes from 'prop-types';
 import GlobalStyle from '../src/theme/GlobalStyle';
 import theme from '../src/theme';
-import { FormProvider } from '../src/components/context/Provider';
+import { FormProvider } from '../src/context/Provider';
 
 export default function App({ Component, pageProps }) {
   return (

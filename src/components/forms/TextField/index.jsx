@@ -34,6 +34,20 @@ const Input = styled.input`
       max-width: none;
     `,
   })};
+
+  &:invalid {
+    border-color: red;
+  }
+  &,
+  &:valid {
+    border-color: ${({ theme }) => theme.colors.background.main.color};
+  }
+`;
+
+export const Validation = styled.span`
+  color: red;
+  display: flex;
+  ${propToStyle('marginBottom')}
 `;
 
 export default function TextField({

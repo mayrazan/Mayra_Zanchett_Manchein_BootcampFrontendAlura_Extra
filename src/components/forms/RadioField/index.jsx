@@ -25,6 +25,13 @@ const RadioWrapper = styled.div`
   max-width: 120px;
   align-items: center;
   flex-shrink: 2;
+  &:invalid {
+    border-color: red;
+  }
+  &,
+  &:valid {
+    border-color: ${({ theme }) => theme.colors.background.main.color};
+  }
 `;
 
 const Radio = styled.input`

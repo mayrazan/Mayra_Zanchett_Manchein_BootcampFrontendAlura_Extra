@@ -3,12 +3,22 @@ import TextField from '../../forms/TextField';
 import Text from '../../foundation/Text';
 import Box from '../../layout/Box';
 import SelectField from '../../forms/SelectField';
-import { useContextForm } from '../../context/Provider';
+import { useContextForm } from '../../../context/Provider';
+import { check } from '../../../utils/formValidation';
 
 export default function TravelSection() {
   const {
-    formInfo, handleChange, searchCountries, select, handleSelect,
+    formInfo,
+    handleChange,
+    searchCountries,
+    select,
+    handleSelect,
+    is18,
   } = useContextForm();
+
+  const formValidation = (event) => {
+    check(event.target, event.target.name);
+  };
 
   return (
     <Box
@@ -33,6 +43,8 @@ export default function TravelSection() {
           onChange={handleChange}
           type="text"
           width="100% !important"
+          pattern="[a-zA-Z ]*"
+          onBlur={formValidation}
         />
         <TextField
           id="lastName"
@@ -42,6 +54,8 @@ export default function TravelSection() {
           onChange={handleChange}
           type="text"
           width="100% !important"
+          pattern="[a-zA-Z ]*"
+          onBlur={formValidation}
         />
       </Box>
       <Box
@@ -58,6 +72,8 @@ export default function TravelSection() {
           labelName="País de residência"
           onChange={handleSelect}
           list="countries"
+          pattern="[a-zA-Z ]*"
+          onBlur={formValidation}
         />
         <TextField
           id="birthDate"
@@ -66,9 +82,21 @@ export default function TravelSection() {
           value={formInfo.birthDate}
           onChange={handleChange}
           type="date"
+          onBlur={formValidation}
         />
       </Box>
-
+      {is18().invalid && (
+        <div
+          style={{
+            display: 'flex',
+            paddingBottom: '20px',
+            color: 'red',
+            justifyContent: 'flex-end',
+          }}
+        >
+          <span>{is18().message}</span>
+        </div>
+      )}
       <Box
         display="flex"
         flexDirection={{ xs: 'column', md: 'column' }}
@@ -80,8 +108,12 @@ export default function TravelSection() {
           labelName="CPF"
           value={formInfo.cpf}
           onChange={handleChange}
-          type="number"
+          type="text"
           width="100% !important"
+          pattern="[0-9]{11}"
+          maxLength="14"
+          onBlur={formValidation}
+          placeholder="000.000.000-00"
         />
         <TextField
           id="email"
@@ -91,6 +123,7 @@ export default function TravelSection() {
           onChange={handleChange}
           type="email"
           width="100% !important"
+          onBlur={formValidation}
         />
         <TextField
           id="tel"
@@ -100,6 +133,9 @@ export default function TravelSection() {
           onChange={handleChange}
           type="tel"
           width="100% !important"
+          minlength="11"
+          onBlur={formValidation}
+          placeholder="(__) ____ - _____"
         />
       </Box>
     </Box>

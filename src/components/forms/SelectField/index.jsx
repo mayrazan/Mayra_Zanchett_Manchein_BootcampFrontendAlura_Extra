@@ -36,6 +36,14 @@ const Select = styled.datalist`
 
 const Input = styled(TextField)`
   width: auto;
+
+  &:invalid {
+    border-color: red;
+  }
+  &,
+  &:valid {
+    border-color: ${({ theme }) => theme.colors.background.main.color};
+  }
 `;
 
 export default function SelectField({

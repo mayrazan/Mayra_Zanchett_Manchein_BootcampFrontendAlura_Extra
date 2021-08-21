@@ -1,6 +1,7 @@
+/* eslint-disable no-console */
 import { useState } from 'react';
-import autocomplete from '../../utils/autocomplete';
-import countries from '../../utils/countries';
+import autocomplete from '../utils/autocomplete';
+import countries from '../utils/countries';
 
 const useForm = () => {
   const formStates = {
@@ -11,7 +12,7 @@ const useForm = () => {
   };
   const [isFormSubmited, setIsFormSubmited] = useState(false);
   const [submissionStatus, setSubmissionStatus] = useState(formStates.DEFAULT);
-  const [radio, setRadio] = useState('');
+  const [radio, setRadio] = useState('money');
   const [select, setSelect] = useState('');
   const [formInfo, setFormInfo] = useState({
     departureDate: '',
@@ -47,11 +48,37 @@ const useForm = () => {
     setFormInfo({ ...formInfo, [name]: value });
   };
 
-  const isFormInvalid = formInfo.departureDate.length === 0
-    || formInfo.returnDate.length === 0
-    || formInfo.originPlace.length === 0;
+  const verifyDate = () => {
+    const date1 = new Date(formInfo.departureDate);
+    const date2 = new Date(formInfo.returnDate);
 
-  console.log(formInfo.departureDate.length);
+    if (date1.getTime() > date2.getTime()) {
+      return { invalid: true, message: 'A data de saída não pode ser a anterior a data de retorno' };
+    }
+    return { invalid: false, message: '' };
+  };
+
+  const is18 = () => {
+    const today = new Date();
+    const birthday = new Date(formInfo.birthDate);
+
+    const isMinAge = new Date(
+      birthday.getUTCFullYear() + 18,
+      birthday.getUTCMonth(),
+      birthday.getUTCDate(),
+    );
+
+    if (isMinAge > today) {
+      return { invalid: true, message: 'A idade mínima é 18 anos.' };
+    }
+    return { invalid: false, message: '' };
+  };
+
+  const isEmpty = Object.keys(formInfo).map(
+    (item) => formInfo[item].length === 0,
+  );
+  const isFormInvalid = isEmpty.filter((i) => i).length > 0;
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -72,7 +99,13 @@ const useForm = () => {
       email: formInfo.email,
       tel: formInfo.tel,
     };
-    console.log(userDTO);
+    if (is18().invalid || verifyDate().invalid) {
+      setSubmissionStatus(formStates.ERROR);
+      console.log('erro');
+    } else {
+      setSubmissionStatus(formStates.DONE);
+      console.log(userDTO);
+    }
   };
 
   return {
@@ -88,6 +121,8 @@ const useForm = () => {
     searchCountries,
     select,
     radio,
+    is18,
+    verifyDate,
   };
 };
 

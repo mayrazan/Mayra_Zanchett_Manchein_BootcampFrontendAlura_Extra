@@ -1,17 +1,19 @@
 import React from 'react';
-// import loadingAnimation from '../animations/loading.json';
-// import successAnimation from '../animations/success.json';
-// import errorAnimation from '../animations/error.json';
-// import FormAnimation from '../FormAnimation';
 import Button from '../../commons/Button';
 import Box from '../../layout/Box';
 import DateSection from '../../formSections/DateSection';
 import PaymentSection from '../../formSections/PaymentSection';
 import TravelSection from '../../formSections/TravelSection';
-import { useContextForm } from '../../context/Provider';
+import { useContextForm } from '../../../context/Provider';
 
 export default function Form() {
-  const { handleSubmit, isFormInvalid } = useContextForm();
+  const {
+    handleSubmit,
+    isFormInvalid,
+    isFormSubmited,
+    submissionStatus,
+    formStates,
+  } = useContextForm();
 
   return (
     <form onSubmit={handleSubmit}>
@@ -22,17 +24,47 @@ export default function Form() {
       <Button type="submit" disabled={isFormInvalid}>
         Comprar
       </Button>
-      {/* {isFormSubmited && submissionStatus === formStates.LOADING && (
-        <FormAnimation animation={loadingAnimation} />
+      {isFormSubmited && submissionStatus === formStates.LOADING && (
+        <span
+          style={{
+            display: 'flex',
+            paddingTop: '20px',
+            color: 'orange',
+            textTransform: 'uppercase',
+            fontWeight: 'bold',
+          }}
+        >
+          carregando
+        </span>
       )}
 
       {isFormSubmited && submissionStatus === formStates.DONE && (
-        <FormAnimation animation={successAnimation} />
+        <span
+          style={{
+            display: 'flex',
+            paddingTop: '20px',
+            color: 'green',
+            textTransform: 'uppercase',
+            fontWeight: 'bold',
+          }}
+        >
+          Dados enviados com sucesso!
+        </span>
       )}
 
       {isFormSubmited && submissionStatus === formStates.ERROR && (
-        <FormAnimation animation={errorAnimation} />
-      )} */}
+        <span
+          style={{
+            display: 'flex',
+            paddingTop: '20px',
+            color: 'red',
+            textTransform: 'uppercase',
+            fontWeight: 'bold',
+          }}
+        >
+          Erro no cadastro, tente novamente!
+        </span>
+      )}
     </form>
   );
 }
